@@ -34,7 +34,7 @@ describe("/api/auth/signup", () => {
       const res = await api
         .post("/api/auth/signup")
         .send({
-          email: "odunsiolakunbi@yahoo.com",
+          email: "sandhya.kodem@gmail.com",
           password: "secret",
           fullname: "test db",
           username: "test",

@@ -1,5 +1,4 @@
 import Spinner from "components/Spinner";
-import Header from "layout/Header";
 import Layout from "layout/Layout";
 import {
   Account,
@@ -21,7 +20,7 @@ import { ProtectedRoute } from "routes/protected.route";
 
 function App() {
   return (  
-<>  <Header />
+<>  
     <BrowserRouter>
       <Suspense
         fallback={
