@@ -10,6 +10,12 @@ class ProductService {
   getProductByName(name) {
     return API.get(`/products/${name}`);
   }
+  getProductBySearchStr(searchStr) {
+    return API.get(`/products/searchStr/${searchStr}`);
+  }
+  getProductByCategory(category) {
+    return API.get(`/products/category/${category}`);
+  }
 }
 
 export default new ProductService();

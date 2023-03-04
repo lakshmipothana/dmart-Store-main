@@ -44,6 +44,33 @@ const getProductByNameDb = async ({ name }) => {
   return product[0];
 };
 
+const getProductBySearchStrDb = async ({ searchStr, limit, offset }) => {
+  console.log("inside DB :: searchStr :: "+searchStr );
+
+  let qryStr =  "select products.*, trunc(avg(reviews.rating),1) as avg_rating, count(reviews.*) from products "
+  +" LEFT JOIN reviews ON products.product_id = reviews.product_id "
+  +" where upper(products.name) like upper( '%"+searchStr+"%')"
+  +" group by products.product_id limit $1 offset $2";
+
+  const { rows } = await pool.query(qryStr, [limit, offset]);
+  const products = [...rows].sort(() => Math.random() - 0.5);
+  return products;
+};
+
+const getProductsByCategoryDb= async ({ category, limit, offset }) => {
+  console.log("inside DB :: category :: "+category );
+
+  let qryStr =    `select products.*, trunc(avg(reviews.rating),1) as avg_rating, count(reviews.*) from products 
+  LEFT JOIN reviews ON products.product_id = reviews.product_id 
+  INNER JOIN products_category ON products.product_cat_id = products_category.product_cat_id
+  where products_category.product_cat_id = $3
+  group by products.product_id limit $1 offset $2`;
+
+  const { rows } = await pool.query(qryStr, [limit, offset, category]);
+  const products = [...rows].sort(() => Math.random() - 0.5);
+  return products;
+};
+
 const updateProductDb = async ({ name, price, description, image_url, id }) => {
   const { rows: product } = await pool.query(
     "UPDATE products set name = $1, price = $2, description = $3 image_url = $4 where product_id = $5 returning *",
@@ -67,4 +94,6 @@ module.exports = {
   updateProductDb,
   deleteProductDb,
   getAllProductsDb,
+  getProductBySearchStrDb,
+  getProductsByCategoryDb
 };

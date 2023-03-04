@@ -4,28 +4,29 @@ import productService from "services/product.service";
 const ProductContext = createContext();
 
 const ProductProvider = ({ children }) => {
+  
   const [products, setProducts] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
+    console.log("inside use Products useEffect");
     setIsLoading(true);
-    productService.getProducts(page).then((response) => {
-      setProducts(response.data);
-      setIsLoading(false);
-    });
+      productService.getProducts(page).then((response) => {
+        setProducts(response.data);
+        setIsLoading(false);
+      });
   }, [page]);
 
   return (
-    <ProductContext.Provider
-      value={{ products, setProducts, isLoading, setIsLoading, page, setPage }}
-    >
+    <ProductContext.Provider value={{ products, setProducts, isLoading, setIsLoading, page, setPage}} >
       {children}
     </ProductContext.Provider>
   );
 };
 
-const useProduct = () => {
+const useProduct = () => {  
+  console.log("inside use Products ----------- ");
   const context = useContext(ProductContext);
   if (context === undefined) {
     throw new Error("useProduct must be used within a ProductProvider");

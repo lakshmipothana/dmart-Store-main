@@ -1,6 +1,8 @@
 import Nav from "components/Nav";
 import Spinner from "components/Spinner";
 import { Helmet } from "react-helmet-async";
+import { NavSidebar } from "./NavSidebar";
+import { SearchBar } from "./SearchBar";
 
 const Layout = ({ children, title, loading }) => {
   return (
@@ -41,33 +43,57 @@ const Layout = ({ children, title, loading }) => {
         html,body{
           height: 100%;
         }
+        .body_style{
+          padding-right: 10rem !important;
+          padding-left: 0.2rem !important;
+        }
+        .nav_style{
+          width: 500px;
+        }
+        .footer_style{
+          width: 1100px;
+          margin: -20px 0 0 40px;
+        }
     `}</style>
       </Helmet>
       <div className="min-h-screen flex flex-col">
         <Nav/>
-        {loading ? (
-          <>
-            <Spinner size={100} loading />
-          </>
-        ) : (
-          <div className="text-gray-700 mt-16 mx-auto px-2 lg:px-56 flex-grow h-full w-full">
-            <main className="h-full">{children}</main>
-          </div>
-        )}
+        <div className="flex h-screen mt-10 bg-gray-1000 h-full  ">
 
-        <footer className="mt-auto flex justify-center py-2">
-          <p className="text-sm text-gray-600 sm:ml-4 sm:pl-4 sm:py-2 sm:mt-0 mt-4">
-            &copy; {new Date().getFullYear()} DMart Store —
-            <a
-              href="https://github.com/dhatguy"
-              className="text-gray-500 ml-1"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              @dhatGuy
-            </a>
-          </p>
-        </footer>
+          <div className="flex h-screen mt-10 bg-gray-1000 nav_style">
+              {title !== "Login" ?
+                <NavSidebar/> : ''
+              } 
+          </div> 
+        
+            {loading ? (
+              <>
+                <Spinner size={100} loading />
+              </>
+            ) : (
+              <div className="text-gray-700 mt-1 mx-auto px-2 lg:px-56 flex-grow h-full w-full body_style ">
+                <div  className="text-gray-700">  
+                   <main className="h-full">{children}</main>
+                </div>
+
+                {/* <footer className=" flex justify-between  py-2  footer_style">
+                  <p className="text-sm text-gray-600 sm:ml-60 sm:pl-4 sm:py-2 sm:mt-0 mt-4">
+                    &copy; {new Date().getFullYear()} DMart Store —
+                    <a
+                      href="#"
+                      className="text-gray-500 ml-1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      @Dmart
+                    </a>
+                  </p>
+                </footer>  */}
+   
+              </div>
+            )}
+        </div>
+       
       </div>
     </>
   );

@@ -60,7 +60,7 @@ const Login = () => {
 
   return (
     <Layout title="Login">
-      <div className="flex items-center justify-center m-auto mt-20">
+      <div className="flex items-center justify-center m-auto mt-10">
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col w-full md:w-1/2"
           onSubmit={handleSubmit(onSubmit)}

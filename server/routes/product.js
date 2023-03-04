@@ -9,6 +9,8 @@ const {
   getProductReviews,
   createProductReview,
   updateProductReview,
+  getProductsBySearchStr,
+  getProductsByCategory
 } = require("../controllers/products.controller");
 const verifyAdmin = require("../middleware/verifyAdmin");
 const verifyToken = require("../middleware/verifyToken");
@@ -16,6 +18,16 @@ const verifyToken = require("../middleware/verifyToken");
 router
   .route("/")
   .get(getAllProducts)
+  .post(verifyToken, verifyAdmin, createProduct);
+
+router
+  .route("/searchStr/:searchStr")
+  .get(getProductsBySearchStr)
+  .post(verifyToken, verifyAdmin, createProduct);
+
+  router
+  .route("/category/:category")
+  .get(getProductsByCategory)
   .post(verifyToken, verifyAdmin, createProduct);
 
 router

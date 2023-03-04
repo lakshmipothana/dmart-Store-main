@@ -175,3 +175,20 @@ INSERT INTO public.products (product_id, name, price, description, image_url) VA
 Sweetened only with vineyard ripened grape and fruit juices, 100 percent from fruit Authentic French Recipe, Gently cooked to preserve the natural flavor of the fruit, Gluten-Free, Only Natural Sugars, Non-Genetically Modified Ingredients, No Cane Sugars, Corn Syrups, Artificial Sweeteners, Colors, Flavors, or Preservatives, All Natural Ingredients', 'https://i.ibb.co/znrFfPt/jam.jpg');
 INSERT INTO public.products (product_id, name, price, description, image_url) VALUES (19, 'Rice - 7 Grain Blend', 732.36, 'Rice with a brown hue. Barley. Millet. Flax seed is a type of seed. Wheat. Quinoa in a red color. Rice from the wild. Microwave for 90 seconds in the pouch. USDA certified organic. 100% Whole Grain: 44 g or more per serving Consume 48 g or more of whole grains per day. You''re only 90 seconds away from a nutritious side dish or a meal on its own. It''s that easy!', 'https://i.ibb.co/Srv1Hjr/rice.png');
 INSERT INTO public.products (product_id, name, price, description, image_url) VALUES (20, 'Saskatoon Berries - Frozen', 606.2, 'Raw plant-based superfood jam-packed with nutrients to get you through the day! We can keep all of the benefits and flavors of fresh Saskatoon Berries by freeze drying them, making them an easy on-the-go treat! They''re great as a healthy snack or added to cereals, smoothies, salads, and baking. A healthy diet high in vegetables and fruits may lower the risk of certain types of cancer.', 'https://i.ibb.co/ZcPjq1Y/berry.png');
+
+
+CREATE TABLE public.products_category
+(
+    product_cat_id SERIAL NOT NULL,
+    prod_cat_name character varying(50) NOT NULL,
+    description text NOT NULL,
+    PRIMARY KEY (product_cat_id)
+);
+
+ALTER TABLE public.products add column  product_cat_id integer;	
+
+ALTER TABLE public.products
+    ADD FOREIGN KEY (product_cat_id)
+    REFERENCES public.products_category (product_cat_id)
+    ON DELETE SET NULL
+    NOT VALID;

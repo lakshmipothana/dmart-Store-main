@@ -11,24 +11,26 @@ import {
   ProductDetails,
   ProductList,
   Register,
-  ResetPassword,
+  ResetPassword
 } from "pages";
 import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "routes/protected.route";
 
+import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
+import ProductListByCategory from "pages/ProductListByCategory";
+
 function App() {
   return (  
-<>  
+    <>
     <BrowserRouter>
       <Suspense
         fallback={
           <Layout>
             <Spinner size={100} />
           </Layout>
-        }>
-          
+        }>          
         <>
           <Toaster position="top-right" />
           <Routes>
@@ -43,7 +45,9 @@ function App() {
             <Route path="/signup" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route index element={<ProductList />} />
-            <Route path="/products/:id/" element={<ProductDetails />} />
+            <Route path="/products/:id/" element={<ProductDetails/>} />
+            <Route path="/productsByCategory/:reqFrom/:prodCate/" element={<ProductListByCategory />} />
+           
             <Route
               path="/cart/checkout"
               element={

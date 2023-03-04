@@ -8,6 +8,20 @@ const getAllProducts = async (req, res) => {
   res.json(products);
 };
 
+const getProductsBySearchStr = async (req, res) => {  
+  const { searchStr ='', page = 1 } = req.params;
+  console.log("inside getProductBySearchStr : " + searchStr + "         "+ page );
+  const products = await productService.getProductBySearchStr(searchStr, page);
+  res.json(products);
+};
+
+const getProductsByCategory = async (req, res) => {  
+  const { category ='', page = 1 } = req.params;
+  console.log("inside getProductsByCategory : " + category + "         "+ page );
+  const products = await productService.getProductsByCategory(category, page);
+  res.json(products);
+};
+
 const createProduct = async (req, res) => {
   const newProduct = await productService.addProduct(req.body);
   res.status(200).json(newProduct);
@@ -22,6 +36,7 @@ const getProductByName = async (req, res) => {
   const product = await productService.getProductByName(req.params);
   res.status(200).json(product);
 };
+
 const updateProduct = async (req, res) => {
   const { name, price, description } = req.body;
   const { id } = req.params;
@@ -112,4 +127,6 @@ module.exports = {
   getProductReviews,
   updateProductReview,
   createProductReview,
+  getProductsBySearchStr,
+  getProductsByCategory
 };
