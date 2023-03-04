@@ -13,7 +13,6 @@ const { ErrorHandler } = require("../helpers/error");
 class ProductService {
 
   getAllProducts = async (page) => {
-    console.log("Inside get all products")
     const limit = 12;
     const offset = (page - 1) * limit;
     try {
@@ -24,7 +23,6 @@ class ProductService {
   };
 
   getProductBySearchStr = async (searchStr, page) => {
-    console.log("Inside get all ProductBySearchStr :: " + searchStr);
     const limit = 12;
     const offset = (page - 1) * limit;
     try {
@@ -35,7 +33,6 @@ class ProductService {
   };
 
   getProductsByCategory = async (category , page) => {
-    console.log("Inside get all  ProductsByCategory:: " + category);
     const limit = 12;
     const offset = (page - 1) * limit;
     try {

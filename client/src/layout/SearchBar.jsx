@@ -7,7 +7,7 @@ export const SearchBar = ({ doSearch } ) => {
   const BarStyle = {width:"40rem",background:"#F0F0F0", border:"none", padding:"0.5rem" };
   const iconDivStyle = { border:"1" , cursor: "pointer", background:"#bbbb", width:"2rem", height:"2.3rem", margin:"1px 0px -2px 0px" , border:"solid 0.1px"};
   const iconStyle = { padding:"0.1rem", margin:"6px 3px 12px 4px"};
- // const navigate = useNavigate();
+
 
   const [searchStr, setSearchStr] = useState('');
  
@@ -15,15 +15,7 @@ export const SearchBar = ({ doSearch } ) => {
     setSearchStr(val);
   }; 
 
-  // const doSearch = () => {
-  //   console.log("inside do Search............."+ searchStr);
-  //   setIsLoading(true);
-  //   productService.getProductBySearchStr( searchStr).then((response) => {
-  //     setProducts(response.data);
-  //     setIsLoading(false);
-  //   });
-  //   //setPage(page);
-  // };
+
 
   return (
    <>

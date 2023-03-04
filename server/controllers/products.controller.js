@@ -10,14 +10,12 @@ const getAllProducts = async (req, res) => {
 
 const getProductsBySearchStr = async (req, res) => {  
   const { searchStr ='', page = 1 } = req.params;
-  console.log("inside getProductBySearchStr : " + searchStr + "         "+ page );
   const products = await productService.getProductBySearchStr(searchStr, page);
   res.json(products);
 };
 
 const getProductsByCategory = async (req, res) => {  
   const { category ='', page = 1 } = req.params;
-  console.log("inside getProductsByCategory : " + category + "         "+ page );
   const products = await productService.getProductsByCategory(category, page);
   res.json(products);
 };

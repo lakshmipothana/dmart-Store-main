@@ -45,7 +45,6 @@ const getProductByNameDb = async ({ name }) => {
 };
 
 const getProductBySearchStrDb = async ({ searchStr, limit, offset }) => {
-  console.log("inside DB :: searchStr :: "+searchStr );
 
   let qryStr =  "select products.*, trunc(avg(reviews.rating),1) as avg_rating, count(reviews.*) from products "
   +" LEFT JOIN reviews ON products.product_id = reviews.product_id "
@@ -58,7 +57,6 @@ const getProductBySearchStrDb = async ({ searchStr, limit, offset }) => {
 };
 
 const getProductsByCategoryDb= async ({ category, limit, offset }) => {
-  console.log("inside DB :: category :: "+category );
 
   let qryStr =    `select products.*, trunc(avg(reviews.rating),1) as avg_rating, count(reviews.*) from products 
   LEFT JOIN reviews ON products.product_id = reviews.product_id 

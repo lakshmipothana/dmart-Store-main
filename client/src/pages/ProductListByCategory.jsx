@@ -15,7 +15,6 @@ const ProductListByCategory = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    console.log("inside do ProductListByCategory effect............."+reqFrom+ "       "+prodCate);
     async function fetchProducts() {
       if(reqFrom === 'Nav' && prodCate != null){
         setIsLoading(true);
@@ -29,7 +28,6 @@ const ProductListByCategory = () => {
   }, [setProductsList]);
 
   const doSearch = (page, searchStr) => {
-    console.log("inside do Search............."+ searchStr);
     if(searchStr !== null && searchStr !== ''){
       productService.getProductBySearchStr( searchStr).then((response) => {
         setProductsList(response.data);
@@ -40,7 +38,6 @@ const ProductListByCategory = () => {
   };
 
   const handleChange = (page) => {
-    console.log("inside handle change.............");
     setProductsList(productsList);
    // setPage(1);
     window.scrollTo({ behavior: "smooth", top: 0 });

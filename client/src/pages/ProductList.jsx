@@ -13,14 +13,12 @@ const ProductList = () => {
   //const [prodList, setProdList] = useState(products); 
 
   const handleChange = (page) => {
-    console.log("inside handle change............."+ page);
     setProducts(products);
     setPage(page);
     window.scrollTo({ behavior: "smooth", top: 0 });
   };
 
   const doSearch = (page, searchStr) => {
-    console.log("inside do Search............."+ searchStr);
     if(searchStr !== null && searchStr !== ''){
       productService.getProductBySearchStr( searchStr).then((response) => {
         setProducts(response.data);

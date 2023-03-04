@@ -10,7 +10,6 @@ const ProductProvider = ({ children }) => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    console.log("inside use Products useEffect");
     setIsLoading(true);
       productService.getProducts(page).then((response) => {
         setProducts(response.data);
@@ -26,7 +25,6 @@ const ProductProvider = ({ children }) => {
 };
 
 const useProduct = () => {  
-  console.log("inside use Products ----------- ");
   const context = useContext(ProductContext);
   if (context === undefined) {
     throw new Error("useProduct must be used within a ProductProvider");
